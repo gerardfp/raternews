@@ -17,7 +17,7 @@ class Noticia extends Model
     }
 
 
-    public function usuario(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

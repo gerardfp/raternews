@@ -1,4 +1,9 @@
+<ul>
 @foreach ($noticias as $item)
-    <p>{{ $item->titulo }}</p>
-    <p>{{ var_dump($item->usuario->name) }}
+    <li>
+        <a href="{{ $item->enlace }}">{{ $item->titulo }}</a>
+        <p>{{ $item->cuerpo }}</p>
+        <p>{{ $item->user->name }}</p>
+    </li>
 @endforeach
+</ul>
