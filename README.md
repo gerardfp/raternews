@@ -1,3 +1,3 @@
 # RaterNews
 
-!()[rater.png]
+![](./rater.png)
