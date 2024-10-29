@@ -1,24 +1,28 @@
 @include('topbar')
 
-<ul>
+<div>
     @foreach ($noticias as $noticia)
-        <li style="list-style-type: none">
+        <div style="display: grid; grid-template-columns: 1em 1fr; gap: 0.5em; align-items: center">
             <form method=POST action="/vote/{{ $noticia->id }}" style="margin: 0; display: inline">
                 @csrf
-                <a href="" onclick="event.preventDefault(); this.closest('form').submit();" style="width: 16px">&#9650;</a>
+                <a><input type="submit" class="triangle" value="bbb"/></a>
             </form>
             
-            <a href="{{ $noticia->enlace }}">{{ $noticia->titulo }}</a>
-            
-            <p style="padding-left: 16px; font-size: small; color: gray">
-                {{ count($noticia->votos) }} votes 
-                by {{ $noticia->user->name }} {{ $noticia->created_at }} 
-                | <a href="/noticia/{{$noticia->id}}">{{ count($noticia->comentarios) }} comments</a>
-            </p>
-        </li>
+            <div>
+                <a href="{{ $noticia->enlace }}">{{ $noticia->titulo }}</a>
+            </div>
+            <div></div>
+            <div>
+                <p class="graytext">
+                    {{ count($noticia->votos) }} votes 
+                    by {{ $noticia->user->name }} {{ $noticia->created_at }} 
+                    | <a href="/noticia/{{$noticia->id}}">{{ count($noticia->comentarios) }} comments</a>
+                </p>
+            </div>
+        </div>
     @endforeach
 
     @if ($noticias->hasMorePages()) 
         <a href="{{ $noticias->nextPageUrl() }}" rel="next">More</a> 
     @endif
-</ul>
+    </div>

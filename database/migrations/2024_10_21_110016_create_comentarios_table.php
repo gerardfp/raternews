@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Comentario;
 use App\Models\Noticia;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -15,9 +16,10 @@ return new class extends Migration
     {
         Schema::create('comentarios', function (Blueprint $table) {
             $table->id();
-            $table->string('text');
+            $table->text('text');
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Noticia::class);
+            $table->foreignIdFor(Comentario::class)->nullable()->default(null);
             $table->timestamps();
         });
     }

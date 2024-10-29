@@ -16,7 +16,7 @@ class Noticia extends Model
 
     public function comentarios(): HasMany
     {
-        return $this->hasMany(Comentario::class);
+        return $this->hasMany(Comentario::class)->where('comentario_id', null);
     }
 
 

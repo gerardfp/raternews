@@ -1,4 +1,5 @@
 <style>
+
     body {
         margin-inline: 10em;
     }
@@ -14,6 +15,25 @@
     
     nav a:visited {
         color: #000000;
+    }
+
+    .graytext {
+        font-size: small;
+        color: gray;
+    }
+
+    .triangle {
+        background: none;
+        border: 0;
+        color: gray;
+        cursor: pointer;
+        /* font-size: small; */
+        padding: 0;
+        width: 1em;
+        height: 1em;
+        border-left: 0.5em solid transparent;
+        border-right: 0.5em solid transparent;
+        border-bottom: 1em solid gray;
     }
 
 </style>
