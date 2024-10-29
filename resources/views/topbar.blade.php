@@ -15,14 +15,15 @@
     nav a:visited {
         color: #000000;
     }
+
 </style>
 
 <nav style="background: #ff6600; padding:0.2em; display: flex; gap: 1em; justify-content: flex-end; margin-bottom:2em;">
     <span>🈸</span>
-    <span style="font-weight: bold">Rater News</span>
+    <a href="/"><span style="font-weight: bold">Rater News</span></a>
     <a href="/enviar" style="margin-right: auto;">enviar</a>
     @auth
-        <a href="/dashboard">{{ Auth::user()->name }}</a> |
+        <a href="/profile">{{ Auth::user()->name }}</a> |
         <form method=POST action="/logout" style="margin: 0">
             @csrf
             <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">logout</a>

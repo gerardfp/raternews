@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Requests\ComentarioStoreRequest;
 use App\Http\Requests\NoticiaStoreRequest;
 use App\Http\Requests\VotoStoreRequest;
+use App\Models\Comentario;
 use App\Models\Noticia;
 use App\Models\Voto;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +32,6 @@ Route::post('/store', function(NoticiaStoreRequest $noticiaStoreRequest){
 });
 
 Route::post('/vote/{noticia_id}', function(VotoStoreRequest $votoStoreRequest, $noticia_id) {
-
     $voto = new Voto;
     $voto->noticia_id = $noticia_id;
     $voto->user_id = Auth::user()->id;
@@ -39,9 +40,17 @@ Route::post('/vote/{noticia_id}', function(VotoStoreRequest $votoStoreRequest, $
     return redirect()->back();
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::post('/comment/{noticia_id}', function(ComentarioStoreRequest $comentarioStoreRequest, string $noticia_id){
+    $comentario = new Comentario;
+    $comentario->text = $comentarioStoreRequest->text;
+    $comentario->noticia_id = $noticia_id;
+    $comentario->user_id = Auth::user()->id;
+    $comentario->save();
+
+    return redirect()->back();
+
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

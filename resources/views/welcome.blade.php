@@ -7,9 +7,13 @@
                 @csrf
                 <a href="" onclick="event.preventDefault(); this.closest('form').submit();" style="width: 16px">&#9650;</a>
             </form>
+            
             <a href="{{ $noticia->enlace }}">{{ $noticia->titulo }}</a>
-            <p style="padding-left: 16px">{{ count($noticia->votos) }} votes by {{ $noticia->user->name }} 2 hours ago | 
-                <a href="/noticia/{{$noticia->id}}">0 comments</a>
+            
+            <p style="padding-left: 16px; font-size: small; color: gray">
+                {{ count($noticia->votos) }} votes 
+                by {{ $noticia->user->name }} {{ $noticia->created_at }} 
+                | <a href="/noticia/{{$noticia->id}}">{{ count($noticia->comentarios) }} comments</a>
             </p>
         </li>
     @endforeach
